@@ -2,4 +2,32 @@
   <h2>{{ post.title }}</h2>
   <p>{{ post.id }}</p>
   <p>{{ post.description }}</p>
+  <button type="button" class="btn btn-primary" (click)="update(post)">Edit</button>
+  <button type="button" class="btn btn-primary" (click)="delete(post)">Delete</button>
+
+  <div class="row" [hidden]="!editBtnClicked">
+    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <form #postForm='ngForm'>
+        <div class="form-group">
+          <label for="post-title">
+            <h3>Post Title</h3>
+          </label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Post Title" #title='ngModel' [(ngModel)]='post.title' required>
+          <div [hidden]='title.valid || title.pristine' class="alert alert-danger">
+            Enter a post title
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="post-description">
+            <h3>Post Description</h3>
+          </label>
+          <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" #description='ngModel' [(ngModel)]='post.description' row='3' required></textarea>
+          <div [hidden]='description.valid || description.pristine' class="alert alert-danger">
+            Enter a post description
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!postForm.form.valid" (click)="update(post); onUpdateClicked()">Update Post</button>
+      </form>
+    </div>
+  </div>
 </div>
