@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <h1 class="display-3">Create a New Post</h1>
+  <p class="lead">This is a simple post page</p>
+</div>
+
+<div class="row">
+  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+    <form (ngSubmit)="createPost(post)" #postForm='ngForm'>
+      <div class="form-group">
+        <label for="post-title">
+          <h3>Post Title</h3>
+        </label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Post Title" #title='ngModel' [(ngModel)]='post.title' required>
+        <div [hidden]='title.valid || title.pristine' class="alert alert-danger">
+          Enter a post title
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="post-description">
+          <h3>Post Description</h3>
+        </label>
+        <textarea type="text" class="form-control" id="description" name="description" placeholder="Description" #description='ngModel' [(ngModel)]='post.description' row='3' required></textarea>
+        <div [hidden]='description.valid || description.pristine' class="alert alert-danger">
+          Enter a post description
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!postForm.form.valid" [hidden]="submitted">Post Article</button>
+    </form>
+  </div>
+</div>
