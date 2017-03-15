@@ -8,7 +8,7 @@ import { Post } from './post';
 export class PostService {
   headers: Headers;
   options: RequestOptions;
-  private postsUrl = 'http://localhost:3000/posts';
+  private postsUrl = 'https://quiet-crag-32070.herokuapp.com/posts';
 
   constructor(private http: Http) {
     this.headers = new Headers({'Content-Type':'application/json'});
